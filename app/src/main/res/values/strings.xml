@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">IdeasAI</string>
+
+    <string name="action_go">Go</string>
+
+    <string name="idea_screen_title">Generate Idea</string>
+    <string name="idea_screen_label">Idea</string>
+    <string name="idea_about_label">About You</string>
+    <string name="idea_about_hint">Describe who you are</string>
+    <string name="idea_purpose_label">Purpose</string>
+    <string name="idea_purpose_hint">What is this for?</string>
+    <string name="idea_topics_label">Topics</string>
+    <string name="idea_topics_hint">What you interested in?</string>
+    <string name="idea_lang_label">Language</string>
+    <string name="idea_lang_hint">Enter language!</string>
+
+    <string name="favorite_screen_title">Favorite Idea</string>
+    <string name="favorite_screen_label">Favorite</string>
 </resources>
