@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -19,6 +21,15 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+            "String",
+            "apiKey",
+            project.rootProject.file("local.properties").let { file ->
+                Properties().apply { load(file.inputStream()) }.getProperty("apiKey")
+                    ?.let { "\"$it\"" } ?: "\"\""
+            }
+        )
     }
 
     buildTypes {
@@ -39,6 +50,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -53,6 +65,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    implementation(libs.kotlinx.serialization.json)
     // di
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
