@@ -51,7 +51,7 @@ fun IdeaScreen(
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        IdeaScreenTopBar(title = stringResource(R.string.favorite_screen_title))
+        IdeaScreenTopBar(title = stringResource(R.string.idea_screen_title))
         LazyColumn(
             modifier = Modifier
                 .weight(1f),
