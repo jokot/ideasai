@@ -16,4 +16,7 @@
 
     <string name="favorite_screen_title">Favorite Idea</string>
     <string name="favorite_screen_label">Favorite</string>
+
+    <string name="empty_title">No Favorites Yet</string>
+    <string name="empty_message">You don’t have any favorite idea</string>
 </resources>
