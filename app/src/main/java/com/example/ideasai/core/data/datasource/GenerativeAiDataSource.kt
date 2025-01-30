@@ -30,7 +30,7 @@ class GenerativeAiDataSourceImpl @Inject constructor(
 
         return try {
             val prompt =
-                "I'm $about, Generate me a list of ideas for this purpose: $purpose, based on these topics: $topics, in $lang. Make the output in this JSON format: $JSON_FORMAT"
+                "I'm $about, Generate me a list of ideas for this purpose: $purpose, based on these topics: $topics, in this language: $lang. Make the output in this JSON format: $JSON_FORMAT"
 
             val response = generativeModel.generateContent(prompt)
             val json = Json {
