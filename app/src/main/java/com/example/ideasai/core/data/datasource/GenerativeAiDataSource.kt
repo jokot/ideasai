@@ -3,7 +3,7 @@ package com.example.ideasai.core.data.datasource
 import com.example.ideasai.core.data.DataResult
 import com.example.ideasai.core.data.model.Idea
 import com.example.ideasai.core.data.model.IdeaResponse
-import com.example.ideasai.core.data.model.toDomain
+import com.example.ideasai.core.util.Constant.JSON_FORMAT
 import com.example.ideasai.core.util.cleanGeminiJsonResponse
 import com.google.ai.client.generativeai.GenerativeModel
 import kotlinx.serialization.json.Json
@@ -37,9 +37,9 @@ class GenerativeAiDataSourceImpl @Inject constructor(
                 ignoreUnknownKeys = true
             }
 
-            val ideas: List<Idea> = json.decodeFromString<List<IdeaResponse>>(
+            val ideas: List<Idea> = json.decodeFromString<IdeaResponse>(
                 response.text.orEmpty().cleanGeminiJsonResponse()
-            ).map { it.toDomain() }
+            ).ideas
 
             DataResult.Success(ideas)
         } catch (e: Exception) {
@@ -47,12 +47,4 @@ class GenerativeAiDataSourceImpl @Inject constructor(
         }
     }
 
-    companion object {
-        const val JSON_FORMAT = "[\n" +
-                "  {\n" +
-                "    \"topic\": \"\",\n" +
-                "    \"name\": \"\"\n" +
-                "  }\n" +
-                "]\n"
-    }
 }
