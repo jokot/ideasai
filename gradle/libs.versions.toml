@@ -9,7 +9,6 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.0"
 composeBom = "2024.04.01"
-
 kotlinxSerializationJson = "1.6.3"
 #di
 ksp = "2.0.21-1.0.27"
@@ -21,6 +20,13 @@ androidxNavigation = "2.8.4"
 androidxHiltNavigationCompose = "1.2.0"
 #room
 room = "2.6.1"
+#unit test
+kotlinxCoroutines = "1.9.0"
+androidxTestRunner = "1.6.2"
+mockitoCore = "5.14.2"
+mockitoKotlin = "5.4.0"
+turbine = "1.2.0"
+mockWebServer = "4.12.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -55,6 +61,17 @@ androidx-compose-material-iconsExtended = { group = "androidx.compose.material",
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+#unit testing
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
+androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidxTestRunner" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "mockWebServer" }
+#ui test
+androidx-test-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

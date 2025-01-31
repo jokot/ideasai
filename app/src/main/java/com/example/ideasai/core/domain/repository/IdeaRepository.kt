@@ -4,12 +4,14 @@ import com.example.ideasai.core.data.DataResult
 import com.example.ideasai.core.data.database.IoDispatcher
 import com.example.ideasai.core.data.datasource.FavoriteDataSource
 import com.example.ideasai.core.data.datasource.GenerativeAiDataSource
+import com.example.ideasai.core.data.datasource.HistoryDataSource
 import com.example.ideasai.core.data.model.Idea
 import com.example.ideasai.core.domain.DomainState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 interface IdeaRepository {
@@ -24,6 +26,7 @@ interface IdeaRepository {
 class IdeaRepositoryImpl @Inject constructor(
     private val generativeAiDataSource: GenerativeAiDataSource,
     private val favoriteDataSource: FavoriteDataSource,
+    private val historyDataSource: HistoryDataSource,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) : IdeaRepository {
     override suspend fun generate(
@@ -39,16 +42,14 @@ class IdeaRepositoryImpl @Inject constructor(
             )
         ) {
             is DataResult.Success -> {
-                favoriteDataSource.insertFavorites(result.data)
-                favoriteDataSource.getFavoriteIds().collect { ids ->
-                    emit(
+                historyDataSource.insertHistory(result.data)
+                favoriteDataSource.getFavoriteIds()
+                    .map { ids ->
                         DomainState.Success(
-                            result.data.map {
-                                it.copy(isFavorite = it.id in ids)
-                            }
+                            result.data.map { it.copy(isFavorite = it.id in ids) }
                         )
-                    )
-                }
+                    }
+                    .collect { emit(it) }
             }
 
             is DataResult.Error -> emit(DomainState.Error(result.message))

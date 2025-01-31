@@ -20,7 +20,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.example.ideasai.core.testing.util.TestRunner"
 
         buildConfigField(
             "String",
@@ -82,6 +82,20 @@ dependencies {
     ksp(libs.androidx.room.compiler)
 
     implementation(libs.generativeai)
+
+    // test
+    implementation(libs.kotlinx.coroutines.test)
+    implementation(libs.hilt.android.testing)
+    implementation(libs.androidx.test.runner)
+    implementation(libs.androidx.test.junit.ktx)
+
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.turbine)
+    testImplementation(libs.mockwebserver)
+    testImplementation(libs.junit)
+    testImplementation("com.google.truth:truth:1.1.3")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
