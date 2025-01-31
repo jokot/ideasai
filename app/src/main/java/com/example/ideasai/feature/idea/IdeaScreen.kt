@@ -14,11 +14,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.ideasai.R
 import com.example.ideasai.core.data.model.Idea
+import com.example.ideasai.core.testing.data.TestTag
 import com.example.ideasai.ui.component.ErrorCard
 import com.example.ideasai.ui.component.IdeaItem
 import com.example.ideasai.ui.component.IdeaScreenTopBar
@@ -49,7 +51,7 @@ fun IdeaScreen(
     var lang by rememberSaveable { mutableStateOf("English") }
 
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize().testTag(TestTag.IDEA_SCREEN)
     ) {
         IdeaScreenTopBar(title = stringResource(R.string.idea_screen_title))
         LazyColumn(

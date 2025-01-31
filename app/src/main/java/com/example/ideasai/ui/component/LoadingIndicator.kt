@@ -8,13 +8,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import com.example.ideasai.core.testing.data.TestTag
 
 @Composable
 fun LoadingIndicator() {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
+            .testTag(TestTag.LOADING_STATE)
             .fillMaxWidth()
             .padding(24.dp)
     ) {
